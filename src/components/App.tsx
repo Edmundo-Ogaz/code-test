@@ -9,7 +9,7 @@ import './App.scss';
 import Welcome from './Welcome';
 import Login from './Login';
 import Transaction from './Transaction';
-import { getSession } from '../sessionStorage';
+import { getSession } from '../localStorage';
 
 const App: FC = () => {
   const [logged] = useState(() => getSession());

@@ -1,5 +1,5 @@
 import React, { FC, FormEvent, ChangeEvent, useState } from 'react';
-import { setSession } from '../sessionStorage';
+import { setSession } from '../localStorage';
 import useApi from '../hooks/useAPI';
 
 import './Login.scss';
