@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { toast } from 'react-toastify';
 
-import { Task } from '../types';
+import { Task, Transaction } from '../types';
 
 const useAPI = () => {
   const getTasks = useCallback(async (): Promise<Task[]> => {
@@ -28,8 +28,84 @@ const useAPI = () => {
     return [];
   }, []);
 
+  const login = useCallback(
+    async (param: { [email: string]: string; password: string }): Promise<any> => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/authenticate`, {
+          method: 'POST',
+          mode: 'cors',
+          credentials: 'include',
+          body: JSON.stringify(param)
+        });
+
+        if (response.status !== 200) {
+          toast(`API request failed`, { type: 'error' });
+
+          return [];
+        }
+        return await response.json();
+      } catch (e) {
+        console.log(e);
+
+        toast(`API request failed`, { type: 'error' });
+      }
+
+      return [];
+    },
+    []
+  );
+
+  const getTransactions = useCallback(async (): Promise<{ [key: string]: Transaction }> => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/transactions`, {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include'
+      });
+
+      if (response.status !== 200) {
+        toast(`API request failed`, { type: 'error' });
+
+        return {} as { [key: string]: Transaction };
+      }
+      return await response.json();
+    } catch (e) {
+      console.log(e);
+
+      toast(`API request failed`, { type: 'error' });
+    }
+
+    return {} as { [key: string]: Transaction };
+  }, []);
+
+  const remove = useCallback(async (id: string): Promise<any> => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/transactions/delete/${id}`, {
+        method: 'GET',
+        mode: 'cors',
+        credentials: 'include'
+      });
+
+      if (response.status !== 200) {
+        toast(`API request failed`, { type: 'error' });
+
+        return null;
+      }
+      return await response.json();
+    } catch (e) {
+      console.log(e);
+
+      toast(`API request failed`, { type: 'error' });
+    }
+
+    return null;
+  }, []);
+
   return {
-    getTasks
+    getTasks,
+    login,
+    getTransactions,
+    remove
   };
 };
 

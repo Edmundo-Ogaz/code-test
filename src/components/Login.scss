@@ -1,0 +1,21 @@
+.Login {
+  margin: auto;
+  padding: 3rem;
+  line-height: 1.5;
+
+  fieldset {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0.4rem;
+    border: solid;
+    padding: 0.8rem;
+
+    legend {
+      grid-column: span 2;
+    }
+
+    button {
+      grid-column-start: 2;
+    }
+  }
+}

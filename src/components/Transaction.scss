@@ -1,0 +1,28 @@
+@import '../variables';
+
+.Transaction {
+  padding: 3rem;
+  line-height: 1.5;
+  margin: auto;
+
+  h1 {
+    display: inline-block;
+    width: 95%;
+  }
+
+  table {
+    margin: 1rem 0;
+
+    thead {
+      background: gray;
+
+      th {
+        border: solid;
+      }
+    }
+
+    td {
+      border: solid;
+    }
+  }
+}

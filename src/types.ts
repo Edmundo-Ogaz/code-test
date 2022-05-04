@@ -5,6 +5,7 @@ export type Transaction = {
   amount: string;
   token: string;
   tokenName: string;
+  deleted?: boolean;
 };
 
 export type Task = {
